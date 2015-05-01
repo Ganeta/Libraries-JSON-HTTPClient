@@ -1,0 +1,45 @@
+package httpClient;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
+import com.nitido.utils.toaster.Toaster;
+
+public class JToaster extends Toaster implements Runnable {
+
+    public void run() {
+        System.out.println("MyThread running");
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        Image image = null;
+
+        File input = new File("C:\\snimka.jpg");
+        image = ImageIO.read(input);
+       
+        Toaster toasterManager1 = new Toaster();
+
+        toasterManager1.setToasterWidth(900);
+        toasterManager1.setToasterHeight(600);
+   
+        toasterManager1.setMessageColor(Color.BLACK);
+
+        Font f = new Font("Arial", Font.BOLD, 30);
+        toasterManager1.setToasterMessageFont(f);
+        toasterManager1.setBackgroundImage(image);
+        toasterManager1.showToaster("Get a little rest, will you?");
+       
+
+        toasterManager1.setStep(4500);
+        toasterManager1.setDisplayTime(4000);
+
+    }
+
+}
